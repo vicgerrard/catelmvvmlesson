@@ -10,10 +10,11 @@ namespace CatelMvvmLesson.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public ObservableCollection<Human> Humans { get; set; }
+        public Human SelectedHuman { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public Command AddHumanCommand { get; set; }
-
+        public Command RemoveHumanCommand { get; set; }
         public MainWindowViewModel()
         {
             Humans = new ObservableCollection<Human>();
@@ -27,6 +28,10 @@ namespace CatelMvvmLesson.ViewModels
                 Humans.Add(human);
                 Name = LastName = string.Empty;
             }, () => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(LastName));
+            RemoveHumanCommand = new Command(() =>
+            {
+                Humans.Remove(SelectedHuman);
+            }, () => SelectedHuman != null);
         }
 
         public override string Title { get { return "CatelMvvmLesson"; } }

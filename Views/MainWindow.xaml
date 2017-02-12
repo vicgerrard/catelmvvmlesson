@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:CatelMvvmLesson.ViewModels"
-    mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
-    ResizeMode="CanResize">
+    ResizeMode="CanResize"
+    mc:Ignorable="d">
 
     <StackPanel>
         <TextBlock Text="Имя: " />
@@ -18,7 +18,20 @@
         <Button Content="Добавить" Command="{Binding AddHumanCommand}" />
 
         <TextBlock Text="Люди:" />
-        <ListBox ItemsSource="{Binding Humans}" />
+        <ListBox ItemsSource="{Binding Humans}" 
+                 SelectedItem="{Binding SelectedHuman}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" Background="Aqua" />
+                        <TextBlock Text=" " />
+                        <TextBlock Text="{Binding LastName}" Background="DarkOliveGreen" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="Удалить" Command="{Binding RemoveHumanCommand}" />
     </StackPanel>
 
 </catel:Window>
