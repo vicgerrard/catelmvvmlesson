@@ -1,0 +1,24 @@
+﻿<catel:Window
+    x:Class="CatelMvvmLesson.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:catel="http://catel.codeplex.com"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:CatelMvvmLesson.ViewModels"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel}"
+    ResizeMode="CanResize">
+
+    <StackPanel>
+        <TextBlock Text="Имя: " />
+        <TextBox Text="{Binding Name}" />
+        <TextBlock Text="Фамилия: " />
+        <TextBox Text="{Binding LastName}" />
+        <Button Content="Добавить" Command="{Binding AddHumanCommand}" />
+
+        <TextBlock Text="Люди:" />
+        <ListBox ItemsSource="{Binding Humans}" />
+    </StackPanel>
+
+</catel:Window>
